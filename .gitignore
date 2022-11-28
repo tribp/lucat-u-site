@@ -1,0 +1,10 @@
+
+# node
+node_modules
+package-lock.json
+
+# environment and secrets
+.env
+
+
+

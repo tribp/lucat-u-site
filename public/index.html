@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+
+    <!-- Optional theme -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+      integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <title>Star Wars Intro App</title>
+  </head>
+  <body>
+    <div class="button" onclick="start()">Start</div>
+    <canvas id="snow"></canvas>
+
+    <section class="intro intro_text">
+      A Long Time Ago, in a galaxy far,<br />
+      far away ...
+    </section>
+    <section class="paragraphs">
+      <div class="story story_text">
+        <p class="text-center">Star Wars Episode XI</p>
+        <p class="text-center">Luca and the Surf Quest</p>
+        <br />
+        <p class="text-center">
+          These are very difficult times! That's why Luca needs to find the
+          perfect wave so she can get surfing powers like no other person in the
+          galaxy. And with that, she begins her quest across the globe.
+        </p>
+
+        <p class="text-center">
+          During the quest, Luca comes across a board called Pukas Sproek. And
+          it is precisely there that she will start all her training to get her
+          powers again.
+        </p>
+      </div>
+    </section>
+    <audio
+      src="https://raw.githubusercontent.com/glaucia86/sounds/master/starwars.mp3"
+      id="sound"
+    ></audio>
+    <script src="js/intro.js"></script>
+  </body>
+</html>
