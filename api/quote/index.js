@@ -50,6 +50,7 @@ module.exports = async function (context, req) {
 
     // In Azure Static Web App (Portal) -configuration add 'PEXELS_API_KEY
     const PEXELS_API_KEY=process.env["PEXELS_API_KEY"]
+    context.log("PEXELS_API_KEY: " + process.env["PEXELS_API_KEY"]);
 
     const imageUrls = await getImages(PEXELS_API_KEY);
 
