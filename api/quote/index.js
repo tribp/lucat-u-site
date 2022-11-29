@@ -49,11 +49,10 @@ module.exports = async function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
 
     // In Azure Static Web App (Portal) -configuration add 'PEXELS_API_KEY
-    //const PEXELS_API_KEY=process.env["PEXELS_API_KEY"]
-    const PEXELS_API_KEY='test'
-    //context.log("PEXELS_API_KEY: " + process.env["PEXELS_API_KEY"]);
+    const PEXELS_API_KEY=process.env["PEXELS_API_KEY"]
+    context.log("PEXELS_API_KEY: " + process.env["PEXELS_API_KEY"]);
 
-    //const imageUrls = await getImages(PEXELS_API_KEY);
+    const imageUrls = await getImages(PEXELS_API_KEY);
 
     //determine format by get quary param -default: 'large'
     if (['tiny','landscape','portrait','small','medium','large','large2x','original'].includes(req.query.format)){
@@ -62,19 +61,18 @@ module.exports = async function (context, req) {
     else {picFormat = 'large'}
 
     //get list or pictures with the selected format
-    //filteredUrls = imageUrls.map(photo => photo['src'][picFormat])
+    filteredUrls = imageUrls.map(photo => photo['src'][picFormat])
 
     // Choose random nr pic and quote
-    //randomUrlNr = Math.floor(Math.random()*imageUrls.length) 
-    //randomQuoteNr = Math.floor(Math.random()*quotes.length) 
+    randomUrlNr = Math.floor(Math.random()*imageUrls.length) 
+    randomQuoteNr = Math.floor(Math.random()*quotes.length) 
 
 
     context.res = {
         // status: 200, /* Defaults to 200 */
         body: {
-            //'url':filteredUrls[randomUrlNr],
-            //'quote': quotes[randomQuoteNr]
-            'key':PEXELS_API_KEY
+            'url':filteredUrls[randomUrlNr],
+            'quote': quotes[randomQuoteNr]
         }
     };
 }
