@@ -26,7 +26,7 @@
   </head>
   <body>
     <div class="button" onclick="start()">Start</div>
-    <canvas id="snow"></canvas>
+    <canvas id="snow" onclick="getQuote()"></canvas>
 
     <section class="intro intro_text">
       A Long Time Ago, in a galaxy far,<br />
@@ -50,6 +50,10 @@
         </p>
       </div>
     </section>
+
+    <img id="starwarsImage" class="" src="" alt="starwars image for quote" />
+    <h1 id="quote" class=""></h1>
+
     <audio
       src="https://raw.githubusercontent.com/glaucia86/sounds/master/starwars.mp3"
       id="sound"

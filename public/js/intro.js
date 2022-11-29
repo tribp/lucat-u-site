@@ -3,8 +3,9 @@
  * Data: 05/04/2022
  * Description: Star Wars Movie Intro Logic.
  * Author: Glaucia Lemos <Twitter: @glaucia_lemos86>
+ * Author: Peter Tribout <github:tribp> - added quote feature 
  */
- console.log('intro ran')
+ 
  let width = window.innerWidth;
  let height = window.innerHeight;
  
@@ -12,6 +13,8 @@
  let story = document.getElementsByClassName('story')[0];
  let paragraphs = document.getElementsByClassName('paragraphs')[0];
  let sound = document.getElementById('sound');
+ let starwarsImage = document.getElementById('starwarsImage');
+ let starwarsQuote = document.getElementById('quote');
 
  intro.style.fontSize = width / 30 + 'px';
  story.style.fontSize = width / 20 + 'px';
@@ -66,3 +69,24 @@ function snow() {
 
 starts();
 snow();
+
+function removeAnimationClass(){
+  starwarsImage.className = '';
+  starwarsQuote.className = '';
+}
+
+async function getQuote(){
+  starwarsImage.className = 'animation_quote';
+  starwarsQuote.className = 'animation_quote';
+  
+  // send get request to api of your Azure SWA
+  const { url,quote } = await(await fetch(`/api/quote?format=large`)).json();
+
+  //fill image +quote
+  document.querySelector('#starwarsImage').src = url;
+  document.querySelector('#quote').textContent = quote;
+
+  //set timer to clear the animation class
+  let timeoutID  = setTimeout(removeAnimationClass,7000);
+
+}

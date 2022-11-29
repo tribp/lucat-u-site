@@ -97,3 +97,50 @@ canvas {
   left: 0;
   z-index: -1;
 }
+
+#starwarsImage {
+  position: absolute;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  width: 30vw;
+  height: 30vw;
+  top: 15%;
+  left: 35%;
+  opacity: 0%;
+}
+#quote {
+  position: absolute;
+  top: 80%;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  opacity: 0%;
+}
+
+.animation_quote {
+  animation: quote 7s ease-out 0s;
+}
+@keyframes quote {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.2;
+  }
+  30% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  70% {
+    opacity: 0.5;
+  }
+  90% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 0;
+  }
+}
