@@ -4,7 +4,7 @@ const fetch = require('node-fetch');
 const pexelsUrl = 'https://api.pexels.com/v1/search?query=starwars';
 
 // In Azure Static Web App (Portal) -configuration add 'PEXELS_API_KEY
-const PEXELS_API_KEY=process.env["PEXELS_API_KEY"]
+//const PEXELS_API_KEY=process.env["PEXELS_API_KEY"]
 
 const quotes = [
   '"It\'s not my fault" - Han Solo',
@@ -49,8 +49,9 @@ module.exports = async function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
 
     // In Azure Static Web App (Portal) -configuration add 'PEXELS_API_KEY
-    const PEXELS_API_KEY=process.env["PEXELS_API_KEY"]
-    context.log("PEXELS_API_KEY: " + process.env["PEXELS_API_KEY"]);
+    //const PEXELS_API_KEY=process.env["PEXELS_API_KEY"]
+    const PEXELS_API_KEY='test'
+    //context.log("PEXELS_API_KEY: " + process.env["PEXELS_API_KEY"]);
 
     //const imageUrls = await getImages(PEXELS_API_KEY);
 
