@@ -27,11 +27,11 @@ const quotes = [
   ' “Jaws is not a shark, but a wave.” – Maui Master',
 ];
 
-async function getImages() {
+async function getImages(api_key) {
   
     return fetch(pexelsUrl, {
         headers: {
-            'Authorization': PEXELS_API_KEY
+            'Authorization': api_key
         }
     })
     .then((res) => res.json())
@@ -48,7 +48,10 @@ async function getImages() {
 module.exports = async function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
 
-    const imageUrls = await getImages();
+    // In Azure Static Web App (Portal) -configuration add 'PEXELS_API_KEY
+    const PEXELS_API_KEY=process.env["PEXELS_API_KEY"]
+
+    const imageUrls = await getImages(PEXELS_API_KEY);
 
     //determine format by get quary param -default: 'large'
     if (['tiny','landscape','portrait','small','medium','large','large2x','original'].includes(req.query.format)){
