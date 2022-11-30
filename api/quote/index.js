@@ -40,6 +40,10 @@ testPhotos=[ {
         "large": "https://images.pexels.com/photos/12156677/pexels-photo-12156677.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     }}
 ]
+testMsg = {
+    "url": "https://images.pexels.com/photos/14561255/pexels-photo-14561255.jpeg?auto=compress&cs=tinysrgb&h=130",
+    "quote": " “Nazaré, a gift from Mars.” – Kelly Slater"
+    }
 
 function getImages(api_key) {
   
@@ -64,11 +68,11 @@ module.exports = async function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
 
     // In Azure Static Web App (Portal) -configuration add 'PEXELS_API_KEY
-    const PEXELS_API_KEY=process.env["PEXELS_API_KEY"]
-    context.log("PEXELS_API_KEY: " + process.env["PEXELS_API_KEY"]);
+    //const PEXELS_API_KEY=process.env["PEXELS_API_KEY"]
+    //context.log("PEXELS_API_KEY: " + process.env["PEXELS_API_KEY"]);
 
     // we get a photos array with for each photo a "src" dict with key=format value = url
-    const imageUrls = await getImages(PEXELS_API_KEY);
+    //const imageUrls = await getImages(PEXELS_API_KEY);
 
     //determine format by get quary param -default: 'large'
     if (['tiny','landscape','portrait','small','medium','large','large2x','original'].includes(req.query.format)){
@@ -77,18 +81,19 @@ module.exports = async function (context, req) {
     else {picFormat = 'large'}
 
     //get list or pictures with the selected format
-    filteredUrls = imageUrls.map(photo => photo['src'][picFormat])
+    //filteredUrls = imageUrls.map(photo => photo['src'][picFormat])
 
     // Choose random nr pic and quote
-    randomUrlNr = Math.floor(Math.random()*imageUrls.length) 
-    randomQuoteNr = Math.floor(Math.random()*quotes.length) 
+    //randomUrlNr = Math.floor(Math.random()*imageUrls.length) 
+    //randomQuoteNr = Math.floor(Math.random()*quotes.length) 
 
 
     context.res = {
         // status: 200, /* Defaults to 200 */
-        body: {
-            'url':filteredUrls[randomUrlNr],
-            'quote': quotes[randomQuoteNr]
-        }
+        //body: {
+        //    'url':filteredUrls[randomUrlNr],
+        //    'quote': quotes[randomQuoteNr]
+        //}
+        body : testMsg
     };
 }
