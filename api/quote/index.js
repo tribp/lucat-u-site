@@ -1,7 +1,7 @@
 // testing: hhtps://www.boredapi.com/api/activity
 // testing: https://httpstat.us/500
 
-//const fetch = require('node-fetch');
+const fetch = require('node-fetch');
 
 const pexelsUrl = 'https://api.pexels.com/v1/search?query=starwars';
 
@@ -40,6 +40,7 @@ testPhotos=[ {
         "large": "https://images.pexels.com/photos/12156677/pexels-photo-12156677.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     }}
 ]
+
 testMsg = {
     "url": "https://images.pexels.com/photos/14561255/pexels-photo-14561255.jpeg?auto=compress&cs=tinysrgb&h=130",
     "quote": " “Nazaré, a gift from Mars.” – Kelly Slater"
@@ -82,11 +83,11 @@ module.exports = async function (context, req) {
         else {picFormat = 'large'}
 
         //get list or pictures with the selected format
-        //filteredUrls = imageUrls.map(photo => photo['src'][picFormat])
+        filteredUrls = imageUrls.map(photo => photo['src'][picFormat])
 
         // Choose random nr pic and quote
-        //randomUrlNr = Math.floor(Math.random()*imageUrls.length) 
-        //randomQuoteNr = Math.floor(Math.random()*quotes.length) 
+        randomUrlNr = Math.floor(Math.random()*imageUrls.length) 
+        randomQuoteNr = Math.floor(Math.random()*quotes.length) 
 
     } catch (err) {
         context.log.error('ERROR', err);
@@ -95,12 +96,12 @@ module.exports = async function (context, req) {
     }
 
 
-    context.res.json( {
+    context.res = {
         // status: 200, /* Defaults to 200 */
         //body: {
         //    'url':filteredUrls[randomUrlNr],
         //    'quote': quotes[randomQuoteNr]
         //}
         body : testMsg
-    });
+    };
 }
