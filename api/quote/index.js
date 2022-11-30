@@ -1,7 +1,7 @@
 // testing: hhtps://www.boredapi.com/api/activity
 // testing: https://httpstat.us/500
 
-const fetch = require('node-fetch');
+//const fetch = require('node-fetch');
 
 const pexelsUrl = 'https://api.pexels.com/v1/search?query=starwars';
 
