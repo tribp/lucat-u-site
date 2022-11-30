@@ -80,7 +80,7 @@ async function getQuote(){
   starwarsQuote.className = 'animation_quote';
   
   // send get request to api of your Azure SWA
-  const { url,quote } = await(await fetch(`../api/quote?format=large`)).json();
+  const { url,quote } = await(await fetch(`/api/quote?format=large`)).json();
 
   //fill image +quote
   document.querySelector('#starwarsImage').src = url;
