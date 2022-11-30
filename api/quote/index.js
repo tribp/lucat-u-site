@@ -29,6 +29,18 @@ const quotes = [
   ' “Jaws is not a shark, but a wave.” – Maui Master',
 ];
 
+testPhotos=[ {
+    "src": {
+        "large2x": "https://images.pexels.com/photos/14561255/pexels-photo-14561255.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "large": "https://images.pexels.com/photos/14561255/pexels-photo-14561255.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    }},
+    { 
+    "src": {
+        "large2x": "https://images.pexels.com/photos/12156677/pexels-photo-12156677.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "large": "https://images.pexels.com/photos/12156677/pexels-photo-12156677.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    }}
+]
+
 function getImages(api_key) {
   
     return fetch(pexelsUrl, {
@@ -42,7 +54,8 @@ function getImages(api_key) {
     })
     .catch((error) => {
         console.log(`Error: ${error}`)
-        return(error.message)
+        //return(error.message)
+        return testPhotos
     })
   };
 
@@ -54,6 +67,7 @@ module.exports = async function (context, req) {
     const PEXELS_API_KEY=process.env["PEXELS_API_KEY"]
     context.log("PEXELS_API_KEY: " + process.env["PEXELS_API_KEY"]);
 
+    // we get a photos array with for each photo a "src" dict with key=format value = url
     const imageUrls = await getImages(PEXELS_API_KEY);
 
     //determine format by get quary param -default: 'large'
