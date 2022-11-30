@@ -68,24 +68,31 @@ module.exports = async function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
 
     // In Azure Static Web App (Portal) -configuration add 'PEXELS_API_KEY
-    //const PEXELS_API_KEY=process.env["PEXELS_API_KEY"]
+    const PEXELS_API_KEY=process.env["PEXELS_API_KEY"]
     //context.log("PEXELS_API_KEY: " + process.env["PEXELS_API_KEY"]);
 
-    // we get a photos array with for each photo a "src" dict with key=format value = url
-    //const imageUrls = await getImages(PEXELS_API_KEY);
+    try {
+        // we get a photos array with for each photo a "src" dict with key=format value = url
+        const imageUrls = await getImages(PEXELS_API_KEY);
 
-    //determine format by get quary param -default: 'large'
-    if (['tiny','landscape','portrait','small','medium','large','large2x','original'].includes(req.query.format)){
-        picFormat = req.query.format
+        //determine format by get quary param -default: 'large'
+        if (['tiny','landscape','portrait','small','medium','large','large2x','original'].includes(req.query.format)){
+            picFormat = req.query.format
+        }
+        else {picFormat = 'large'}
+
+        //get list or pictures with the selected format
+        //filteredUrls = imageUrls.map(photo => photo['src'][picFormat])
+
+        // Choose random nr pic and quote
+        //randomUrlNr = Math.floor(Math.random()*imageUrls.length) 
+        //randomQuoteNr = Math.floor(Math.random()*quotes.length) 
+
+    } catch (err) {
+        context.log.error('ERROR', err);
+        // This rethrown exception will be handled by the Functions Runtime and will only fail the individual invocation
+        throw err;
     }
-    else {picFormat = 'large'}
-
-    //get list or pictures with the selected format
-    //filteredUrls = imageUrls.map(photo => photo['src'][picFormat])
-
-    // Choose random nr pic and quote
-    //randomUrlNr = Math.floor(Math.random()*imageUrls.length) 
-    //randomQuoteNr = Math.floor(Math.random()*quotes.length) 
 
 
     context.res.json( {
