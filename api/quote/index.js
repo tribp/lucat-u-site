@@ -1,4 +1,4 @@
-const { response } = require('express');
+
 const fetch = require('node-fetch');
 
 const pexelsUrl = 'https://api.pexels.com/v1/search?query=starwars';
