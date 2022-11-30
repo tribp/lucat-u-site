@@ -1,3 +1,5 @@
+// testing: hhtps://www.boredapi.com/api/activity
+// testing: https://httpstat.us/500
 
 const fetch = require('node-fetch');
 
@@ -27,7 +29,7 @@ const quotes = [
   ' “Jaws is not a shark, but a wave.” – Maui Master',
 ];
 
-async function getImages(api_key) {
+function getImages(api_key) {
   
     return fetch(pexelsUrl, {
         headers: {
