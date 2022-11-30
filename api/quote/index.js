@@ -88,12 +88,12 @@ module.exports = async function (context, req) {
     //randomQuoteNr = Math.floor(Math.random()*quotes.length) 
 
 
-    context.res = {
+    context.res.json( {
         // status: 200, /* Defaults to 200 */
         //body: {
         //    'url':filteredUrls[randomUrlNr],
         //    'quote': quotes[randomQuoteNr]
         //}
         body : testMsg
-    };
+    });
 }
