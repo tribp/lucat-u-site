@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "api for getting starwars quotes and images",
   "dependencies": {
-    "node-fetch": "3.3.0"
-  },
-  "devDependencies": {}
+    "axios": "^1.2.0"
+  }
 }
