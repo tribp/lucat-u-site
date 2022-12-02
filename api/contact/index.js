@@ -4,7 +4,7 @@ module.exports = async function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
 
     const response = await axios("https://www.boredapi.com/api/activity")
-    const activity = response.data 
+    const activity = response.data
 
     const name = (req.query.name || (req.body && req.body.name));
     const responseMessage = name

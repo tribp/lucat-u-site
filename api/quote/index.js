@@ -1,12 +1,13 @@
 // testing: hhtps://www.boredapi.com/api/activity
 // testing: https://httpstat.us/500
+// testing: htpps://reqres.in/api
 
-const fetch = require('node-fetch');
+const axios = require('axios')
 
 const pexelsUrl = 'https://api.pexels.com/v1/search?query=starwars';
 
 // In Azure Static Web App (Portal) -configuration add 'PEXELS_API_KEY
-//const PEXELS_API_KEY=process.env["PEXELS_API_KEY"]
+const PEXELS_API_KEY=process.env["PEXELS_API_KEY"]
 
 const quotes = [
   '"It\'s not my fault" - Han Solo',
@@ -29,48 +30,29 @@ const quotes = [
   ' “Jaws is not a shark, but a wave.” – Maui Master',
 ];
 
-testPhotos=[ {
-    "src": {
-        "large2x": "https://images.pexels.com/photos/14561255/pexels-photo-14561255.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-        "large": "https://images.pexels.com/photos/14561255/pexels-photo-14561255.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
-    }},
-    { 
-    "src": {
-        "large2x": "https://images.pexels.com/photos/12156677/pexels-photo-12156677.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-        "large": "https://images.pexels.com/photos/12156677/pexels-photo-12156677.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
-    }}
-]
-
-testMsg = {
-    "url": "https://images.pexels.com/photos/14561255/pexels-photo-14561255.jpeg?auto=compress&cs=tinysrgb&h=130",
-    "quote": " “Nazaré, a gift from Mars.” – Kelly Slater"
+async function getImages(api_key) {
+    const url = pexelsUrl,
+    config = {
+        responseType: 'json',
+        headers:{
+            'Content-Type':'application/json',
+            'Authorization': api_key,
+        },
     }
-
-function getImages(api_key) {
+    
+    try {
+        const msg = await axios.get(url,config)
+        
+        return msg.data.photos
+    } catch (err) {
+        console.log(`ERROR: ${err}`)
+    }
+       
+}
   
-    return fetch(pexelsUrl, {
-        headers: {
-            'Authorization': api_key
-        }
-    })
-    .then((res) => res.json())
-    .then((data) => {
-        return(data.photos)
-    })
-    .catch((error) => {
-        console.log(`Error: ${error}`)
-        //return(error.message)
-        return testPhotos
-    })
-  };
-
 
 module.exports = async function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
-
-    // In Azure Static Web App (Portal) -configuration add 'PEXELS_API_KEY
-    const PEXELS_API_KEY=process.env["PEXELS_API_KEY"]
-    //context.log("PEXELS_API_KEY: " + process.env["PEXELS_API_KEY"]);
 
     try {
         // we get a photos array with for each photo a "src" dict with key=format value = url
@@ -98,10 +80,9 @@ module.exports = async function (context, req) {
 
     context.res = {
         // status: 200, /* Defaults to 200 */
-        //body: {
-        //    'url':filteredUrls[randomUrlNr],
-        //    'quote': quotes[randomQuoteNr]
-        //}
-        body : testMsg
+        body: {
+            'url':filteredUrls[randomUrlNr],
+            'quote': quotes[randomQuoteNr]
+        }
     };
 }
